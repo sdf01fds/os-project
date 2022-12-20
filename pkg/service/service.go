@@ -10,9 +10,19 @@ type Authorization interface {
 	GenerateToken(email, password string) (string, error)
 	ParseToken(accessToken string) (int, error)
 }
-type Transactions interface{}
+type Transactions interface {
+	CreateTransaction(userId int, transaction project.Transaction) (project.Transaction, error)
+	GetAllTransactions(userId int) ([]project.Transaction, error)
+	GetTransactionById(userId, transactionId int) (project.Transaction, error)
+	DeleteTransaction(userId, transactionId int) error
+}
 
-type Wallet interface{}
+type Wallet interface {
+	CreateWallet(userId int, wallet project.Wallet) (int, error)
+	GetAllWallets(userId int) ([]project.Wallet, error)
+	GetWalletById(userId, walletId int) (project.Wallet, error)
+	UpdateWalletBalance(userId, walletId int, amount float32) error
+}
 
 type Service struct {
 	Authorization

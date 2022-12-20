@@ -15,7 +15,7 @@ CREATE TABLE wallets
     updated_at  date,
     private_key varchar,
     public_key  varchar,
-    balance     float
+    balance     numeric(18, 2)
 );
 
 
@@ -26,6 +26,5 @@ CREATE TABLE transactions
     sender_id   int references users (id) on delete cascade   not null,
     receiver_id int references users (id) on delete cascade   not null,
     wallet_id   int references wallets (id) on delete cascade not null,
-    amount      float
-
+    amount      numeric(18, 2)
 );
