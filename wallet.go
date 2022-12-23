@@ -11,3 +11,7 @@ type Wallet struct {
 	PublicKey  string    `json:"public_key" db:"public_key"`
 	Balance    float32   `json:"balance" db:"balance"`
 }
+
+type UpdateWallet struct {
+	Amount float32 `json:"amount"`
+}

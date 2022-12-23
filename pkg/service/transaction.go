@@ -9,6 +9,10 @@ type TransactionsService struct {
 	repo repository.Transactions
 }
 
+func NewTransactionService(repo repository.Transactions) *TransactionsService {
+	return &TransactionsService{repo: repo}
+}
+
 func (s *TransactionsService) CreateTransaction(userId int, transaction project.Transaction) (project.Transaction, error) {
 	return s.repo.CreateTransaction(userId, transaction)
 }
@@ -21,6 +25,6 @@ func (s *TransactionsService) GetTransactionById(userId, transactionId int) (pro
 	return s.repo.GetTransactionById(userId, transactionId)
 }
 
-func (s *TransactionsService) DeleteTransactionById(userId, transactionId int) error {
+func (s *TransactionsService) DeleteTransaction(userId, transactionId int) error {
 	return s.repo.DeleteTransaction(userId, transactionId)
 }
